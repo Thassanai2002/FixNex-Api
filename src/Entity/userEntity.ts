@@ -8,13 +8,13 @@ export class User {
   @Column()
   user_name: string;
 
-  @Column()
+  @Column({ nullable: true }) // ทำให้ email สามารถรับค่า null ได้
   email: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @Column({ nullable: true }) // ทำให้ email สามารถรับค่า null ได้
   phone: string;
 
   @Column()

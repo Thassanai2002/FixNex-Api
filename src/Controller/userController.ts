@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/common';
 import { User } from 'src/Entity/userEntity';
 import { UserService } from 'src/Repository/userRepository';
 
@@ -19,5 +19,15 @@ export class UserController {
   @Post()
   create(@Body() user: User): Promise<User> {
     return this.userService.create(user);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string): Promise<User> {
+    return this.userService.delete(+id);
+  }
+
+  @Patch(':id')  // ใช้ PATCH สำหรับการอัปเดตข้อมูลบางส่วน
+  update(@Param('id') id: string, @Body() user: Partial<User>): Promise<User> {
+    return this.userService.update(+id, user);
   }
 }
