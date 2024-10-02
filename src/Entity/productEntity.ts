@@ -3,18 +3,33 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
-  id: number;
+  product_id: number;
 
   @Column()
-  fname: string;
+  product_name: string;
 
   @Column()
-  lname: string;
+  description: string;
 
   @Column()
-  email: string;
+  price: number;
 
   @Column()
-  password: string;
+  category: string;
+
+  @Column()
+  stock_quantity: number;
+
+  @Column()
+  gain_muscle: string;
+
+  @Column()
+  increase_power: string;
+
+  @Column()
+  muscle_recovery: string;
+
+  @Column()
+  absorption_speed: string;
 
 }
