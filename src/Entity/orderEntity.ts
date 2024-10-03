@@ -7,7 +7,7 @@ export class Order {
   order_id: number;
 
   @Column()
-  userr_id: number;
+  user_id: number; // FK from user
 
   @Column()
    oder_date: Date;
