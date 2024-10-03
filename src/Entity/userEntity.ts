@@ -24,7 +24,5 @@ export class User {
   @Column()
   join_date: Date;
 
-  @OneToMany(() => Order, (order) => order.user)
-  orders:Order[];
 
 }

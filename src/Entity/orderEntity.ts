@@ -6,8 +6,8 @@ export class Order {
   @PrimaryGeneratedColumn()
   order_id: number;
 
-  @ManyToOne(() => User, (user) => user.orders)
-  user:User;
+  @Column()
+  userr_id: number;
 
   @Column()
    oder_date: Date;
