@@ -32,4 +32,7 @@ export class Product {
   @Column()
   absorption_speed: string;
 
+  // @Column()
+  // product_pic: Byte[];
+
 }
