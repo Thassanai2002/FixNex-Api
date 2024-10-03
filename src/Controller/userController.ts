@@ -26,6 +26,11 @@ export class UserController {
     return this.userService.delete(+id);
   }
 
+  @Delete()
+  DeleteAll(): void {
+    this.userService.deleteAll();
+  }
+
   @Patch(':id')  // ใช้ PATCH สำหรับการอัปเดตข้อมูลบางส่วน
   update(@Param('id') id: string, @Body() user: Partial<User>): Promise<User> {
     return this.userService.update(+id, user);
