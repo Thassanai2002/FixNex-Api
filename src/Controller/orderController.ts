@@ -21,8 +21,6 @@ export class OrderController {
     return this.orderService.create(Order);
   }
 
-  
-
   @Delete(':id')
   delete(@Param('id') id: string): Promise<Order> {
     return this.orderService.delete(+id);
@@ -31,5 +29,10 @@ export class OrderController {
   @Delete()
   DeleteAll(): void {
     this.orderService.deleteAll();
+  }
+
+  @Patch(':id')
+  update(@Param('id') Order_id: string, @Body() Order: Partial<Order>): Promise<Order> {
+    return this.orderService.update(+Order_id, Order);
   }
 }

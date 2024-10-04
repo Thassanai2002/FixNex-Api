@@ -9,28 +9,32 @@ export class OrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
-  ) { }
+  ) {}
 
   findAll(): Promise<Order[]> {
     return this.orderRepository.find();
   }
 
-  findOne( order_id: number): Promise<Order> {
-    return this.orderRepository.findOneBy({  order_id });
+  findOne(order_id: number): Promise<Order> {
+    return this.orderRepository.findOneBy({ order_id });
   }
 
   create(order: Order): Promise<Order> {
     return this.orderRepository.save(order);
   }
 
-
-  delete( order_id: number): Promise<Order> {
-    return this.orderRepository.delete( order_id).then(() => {
-      return this.findOne( order_id);
+  delete(order_id: number): Promise<Order> {
+    return this.orderRepository.delete(order_id).then(() => {
+      return this.findOne(order_id);
     });
   }
 
   deleteAll(): void {
     this.orderRepository.clear();
-}
+  }
+
+  async update(order_id: number, updateData: Partial<Order>): Promise<Order> {
+    await this.orderRepository.update(order_id, updateData); // อัปเดตข้อมูล
+    return this.orderRepository.findOneBy({ order_id }); // คืนค่าข้อมูลผู้ใช้ที่อัปเดต
+  }
 }
