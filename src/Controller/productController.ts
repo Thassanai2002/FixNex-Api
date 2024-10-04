@@ -33,8 +33,8 @@ export class ProductController {
     this.productService.deleteAll();
   }
 
-//   @Patch(':id')  // ใช้ PATCH สำหรับการอัปเดตข้อมูลบางส่วน
-//   update(@Param('id') id: string, @Body() Product: Partial<Product>): Promise<Product> {
-//     return this.productService.update(+id, Product);
-//   }
+  @Patch(':id')
+  update(@Param('id') product_id: string, @Body() Product: Partial<Product>): Promise<Product> {
+    return this.productService.update(+product_id, Product);
+  }
 }
