@@ -6,18 +6,17 @@ export class trainingProgram {
   program_id: number;
 
   @Column()
-  program_name: string; 
+  program_name: string;
 
   @Column()
-   goal: string; 
+  goal: string;
 
-   @Column()
-   descriptiom: string;
+  @Column()
+  descriptiom: string;
 
-   @Column()
-   vip_required: number;
+  @Column()
+  vip_required: number;
 
-   @Column()
-   duration: number;
-
+  @Column()
+  duration: number;
 }

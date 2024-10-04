@@ -9,12 +9,11 @@ export class TrainerRantals {
   user_id: number; // FK from user
 
   @Column()
-   trainer_id: number; // FK from trainer
+  trainer_id: number; // FK from trainer
 
-   @Column()
-   rental_date: Date;
+  @Column()
+  rental_date: Date;
 
-   @Column()
-   duration: number;
-
+  @Column()
+  duration: number;
 }
