@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from 'src/Entity/productEntity';
-import { User } from 'src/Entity/userEntity';
 import { Repository } from 'typeorm';
 
 
@@ -36,8 +35,8 @@ export class ProductService {
 }
 
 
-//   async update( product_id: number, updateData: Partial<User>): Promise<Product> {
-//     await this.productRepository.update( product_id, updateData); // อัปเดตข้อมูล
-//     return this.productRepository.findOneBy({  product_id }); // คืนค่าข้อมูลผู้ใช้ที่อัปเดต
-//   }
+  async update( product_id: number, updateData: Partial<Product>): Promise<Product> {
+    await this.productRepository.update( product_id, updateData); // อัปเดตข้อมูล
+    return this.productRepository.findOneBy({  product_id }); // คืนค่าข้อมูลผู้ใช้ที่อัปเดต
+  }
 }
