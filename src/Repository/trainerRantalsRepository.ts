@@ -15,8 +15,12 @@ export class TrainerRantalsService {
     return this.trainerRantalsRepository.find();
   }
 
-  findOne(rental_id: number): Promise<TrainerRantals> {
-    return this.trainerRantalsRepository.findOneBy({ rental_id });
+  findOne(user_id: number): Promise<TrainerRantals> {
+    return this.trainerRantalsRepository.findOneBy({ user_id });
+  }
+
+  findBy(user_id: number): Promise<TrainerRantals[]> {
+    return this.trainerRantalsRepository.findBy({ user_id });
   }
 
   create(ProgramEnrollments: TrainerRantals): Promise<TrainerRantals> {
