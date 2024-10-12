@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { TrainerRantals } from './trainerRantalsEntity';
 
 @Entity()
 export class Trainer {
@@ -14,4 +15,6 @@ export class Trainer {
    @Column()
    avaliability: string;
 
+   @OneToMany(() => TrainerRantals, (rental) => rental.trainer)
+   rentals: TrainerRantals[];
 }

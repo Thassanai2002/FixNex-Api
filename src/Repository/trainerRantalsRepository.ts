@@ -43,4 +43,14 @@ export class TrainerRantalsService {
     await this.trainerRantalsRepository.update(rental_id, update); // อัปเดตข้อมูล
     return this.trainerRantalsRepository.findOneBy({ rental_id }); // คืนค่าข้อมูลผู้ใช้ที่อัปเดต
   }
+
+  async findRentalsWithTrainerName(userId: number) {
+    return await this.trainerRantalsRepository
+      .createQueryBuilder('rental')
+      .leftJoinAndSelect('rental.trainer', 'trainer') // JOIN กับตาราง Trainer
+      .where('rental.user_id = :userId', { userId })
+      .select(['rental', 'trainer.trainer_name']) // เลือกเฉพาะ rental และ trainer_name
+      .getMany();
+  }
+  
 }
