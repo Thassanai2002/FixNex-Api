@@ -11,7 +11,7 @@ export class serviceAll {
 
   async findTrainerUserProgamsEnrollments(id: number): Promise<any> {
     const user = await this.userService.findOne(id);
-    const rental = await this.trainerRantalsService.findBy(id);
-    return { user, rental };
+    const rentals = await this.trainerRantalsService.findRentalsWithTrainerName(id);
+    return { user, rentals };
   }
 }
