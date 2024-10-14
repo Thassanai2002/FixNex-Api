@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { OrderItem } from './orderItemEntity';
 
 @Entity()
 export class Order {
@@ -9,11 +10,14 @@ export class Order {
   user_id: number; // FK from user
 
   @Column()
-   oder_date: Date;
+  oder_date: Date;
 
-   @Column()
-   total_amount: number;
+  @Column()
+  total_amount: number;
 
-   @Column()
-   status: string;
+  @Column()
+  status: string;
+  
+  @OneToMany(() => OrderItem, (oder) => oder.orderItem)
+  oders: OrderItem[];
 }

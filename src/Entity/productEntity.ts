@@ -12,7 +12,7 @@ export class Product {
   description: string;
 
   @Column()
-  price: number;
+  unit_price: number;
 
   @Column()
   category: string;
@@ -31,8 +31,5 @@ export class Product {
 
   @Column()
   absorption_speed: string;
-
-  // @Column()
-  // product_pic: Byte[];
 
 }

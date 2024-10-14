@@ -34,7 +34,7 @@ export class ProgramsEnrollmentsService {
     this.programsEnrollmentsRepository.clear();
 }
 
-async findRentalsWithTrainerName(userId: number) {
+async findEnrollmentssWithProgramName(userId: number) {
   return await this.programsEnrollmentsRepository
     .createQueryBuilder('enrollments')
     .leftJoinAndSelect('enrollments.program', 'program') // JOIN กับตาราง Trainer
