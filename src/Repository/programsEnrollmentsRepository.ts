@@ -34,6 +34,14 @@ export class ProgramsEnrollmentsService {
     this.programsEnrollmentsRepository.clear();
 }
 
+async findRentalsWithTrainerName(userId: number) {
+  return await this.programsEnrollmentsRepository
+    .createQueryBuilder('enrollments')
+    .leftJoinAndSelect('enrollments.program', 'program') // JOIN กับตาราง Trainer
+    .where('enrollments.user_id = :userId', { userId })
+    .select(['enrollments', 'program.program_name', 'program.goal', 'program.duration']) // เลือกเฉพาะ rental และ trainer_name
+    .getMany();
+}
 
   async update(user_id: number, updateData: Partial<programsEnrollments>): Promise<programsEnrollments> {
     await this.programsEnrollmentsRepository.update(user_id, updateData); // อัปเดตข้อมูล

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
+import { TrainingProgram } from './trainingProgramsEntity';
 
 @Entity()
 export class programsEnrollments {
@@ -10,6 +11,10 @@ export class programsEnrollments {
 
   @Column()
   program_id: number;
+
+  @ManyToOne(() => TrainingProgram) // กำหนดความสัมพันธ์กับ Trainer
+  @JoinColumn({ name: 'program_id' }) // เชื่อมโยงกับ trainer_id
+  program: TrainingProgram;
 
   @Column()
   enrollment_date: string;
