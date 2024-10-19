@@ -49,7 +49,7 @@ export class TrainerRantalsService {
       .createQueryBuilder('rental')
       .leftJoinAndSelect('rental.trainer', 'trainer') // JOIN กับตาราง Trainer
       .where('rental.user_id = :userId', { userId })
-      .select(['rental', 'trainer.trainer_name']) // เลือกเฉพาะ rental และ trainer_name
+      .select(['rental', 'trainer.trainer_name','trainer.specialty']) // เลือกเฉพาะ rental และ trainer_name
       .getMany();
   }
   

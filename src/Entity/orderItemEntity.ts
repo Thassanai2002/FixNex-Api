@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
 import { Order } from './orderEntity';
+import { Product } from './productEntity'; // Import Product entity
 
 @Entity()
 export class OrderItem {
@@ -18,7 +19,12 @@ export class OrderItem {
   @Column()
   price: number;
 
-  @ManyToOne(() => Order) // กำหนดความสัมพันธ์กับ Trainer
-  @JoinColumn({ name: 'order_id' }) // เชื่อมโยงกับ trainer_id
-  orderItem: Order;
+  @ManyToOne(() => Order, (order) => order.orderItems)
+  @JoinColumn({ name: 'order_id' })
+  order: Order;
+
+  // ความสัมพันธ์ระหว่าง OrderItem และ Product
+  @ManyToOne(() => Product) 
+  @JoinColumn({ name: 'product_id' }) // เชื่อมโยง product_id
+  product: Product;
 }

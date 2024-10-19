@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { OrderItem } from './orderItemEntity';
 
 @Entity()
@@ -17,7 +17,8 @@ export class Order {
 
   @Column()
   status: string;
-  
-  @OneToMany(() => OrderItem, (oder) => oder.orderItem)
-  oders: OrderItem[];
+
+  // ความสัมพันธ์ระหว่าง Order และ OrderItem
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
+  orderItems: OrderItem[];
 }
