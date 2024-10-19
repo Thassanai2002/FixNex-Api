@@ -42,42 +42,26 @@ export class OrderService {
   }
 
   async findOrdersWithOrderid(userId: number): Promise<any> {
-    // Find orders by user_id
-    const orders = await this.orderRepository.find({
-      where: { user_id: userId },
-      relations: ['oders', 'oders.orderItem'], // Load related OrderItems
-    });
-  
-    const orderDetails = [];
-  
-    for (const order of orders) {
-      const orderItemsDetails = await Promise.all(
-        order.oders.map(async (orderItem) => {
-          // Find product details
-          const product = await this.productRepository.findOne({
-            where: { product_id: orderItem.product_id },
-          });
-          
-          return {
-            order_date: order.oder_date,
-            quantity: orderItem.quantity,
-            price: orderItem.price,
-            product_name: product.product_name,
-            unit_price: product.unit_price,
-          };
-        })
-      );
-  
-      orderDetails.push({
-        order_id: order.order_id,
-        order_date: order.oder_date,
-        total_amount: order.total_amount,
-        status: order.status,
-        items: orderItemsDetails,
-      });
-    }
-  
-    return orderDetails;
+    return await this.orderRepository
+      .createQueryBuilder('order')
+      .leftJoinAndSelect('order.orderItems', 'orderItem')
+      .leftJoinAndSelect('orderItem.product', 'product') // JOIN กับ product entity
+      .where('order.user_id = :userId', { userId })
+      .select([
+        'order.order_id',
+        'order.oder_date',
+        'order.total_amount',
+        'order.status',
+        'orderItem.quantity',
+        'orderItem',
+        'orderItem.price',
+        'product.product_name',
+        'product.unit_price',
+      ])
+      .getMany();
   }
+  
+  
+  
   
 }
