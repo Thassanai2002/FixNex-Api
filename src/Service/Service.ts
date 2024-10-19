@@ -16,7 +16,7 @@ export class serviceAll {
     const user = await this.userService.findOne(id);
     const rentals = await this.trainerRantalsService.findRentalsWithTrainerName(id);
     const enrollments = await this.programsEnrollmentsService.findEnrollmentssWithProgramName(id)
-    const Orders = await this.orderService.findOrdersWithOrderid(id)
-    return { user, rentals, enrollments, Orders };
+    const orders = await this.orderService.findOrdersWithOrderid(id)
+    return { user, rentals, enrollments, orders };
   }
 }
