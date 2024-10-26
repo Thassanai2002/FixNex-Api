@@ -33,13 +33,9 @@ export class UserController {
 
   @Post()
   async create(@Body() user: User): Promise<User> {
-    const userExists = await this.userService.checkUserExists(
-      user.user_name,
-      user.phone,
-      user.email,
-    );
+    const userExists = await this.userService.checkUserExists(user.user_name);
     if (userExists) {
-      throw new ConflictException('User name, phone, or email already exists!'); // ยกเว้นข้อผิดพลาด
+      throw new ConflictException('Username นี้มีอยู่แล้ว!');
     }
     return this.userService.create(user);
   }

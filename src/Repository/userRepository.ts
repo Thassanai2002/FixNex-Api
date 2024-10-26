@@ -18,22 +18,14 @@ export class UserService {
     return this.userRepository.findOneBy({ user_id });
   }
 
-  // ฟังก์ชันใหม่สำหรับตรวจสอบข้อมูลซ้ำ
-  async checkUserExists(user_name: string, phone: string, email: string): Promise<boolean> {
+  async checkUserExists(user_name: string): Promise<boolean> {
     const user = await this.userRepository.findOne({
-      where: [{ user_name }, { phone }, { email }],
+      where: { user_name }
     });
     return !!user;
   }
 
   async create(user: User): Promise<User> {
-    const { user_name, phone, email } = user;
-
-    const userExists = await this.checkUserExists(user_name, phone, email);
-    if (userExists) {
-      throw new ConflictException('User name, phone, or email already exists!'); // โยนข้อผิดพลาดหากพบข้อมูลซ้ำ
-    }
-
     return this.userRepository.save(user);
   }
 
