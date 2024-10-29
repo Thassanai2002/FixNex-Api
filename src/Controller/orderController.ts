@@ -22,9 +22,10 @@ export class OrderController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<Order> {
-    return this.orderService.delete(+id);
+  async delete(@Param('id') id: string): Promise<void> {
+    await this.orderService.delete(+id);
   }
+  
 
   @Delete()
   DeleteAll(): void {
