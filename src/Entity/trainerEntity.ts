@@ -10,11 +10,14 @@ export class Trainer {
   trainer_name: string;
 
   @Column()
-   specialty: string;
+  specialty: string;
 
-   @Column()
-   avaliability: string;
+  @Column()
+  avaliability: string;
 
-   @OneToMany(() => TrainerRantals, (rental) => rental.trainer)
-   rentals: TrainerRantals[];
+  @Column()
+  experience: string;
+
+  @OneToMany(() => TrainerRantals, (rental) => rental.trainer)
+  rentals: TrainerRantals[];
 }
