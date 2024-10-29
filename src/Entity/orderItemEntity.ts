@@ -19,12 +19,13 @@ export class OrderItem {
   @Column()
   price: number;
 
-  @ManyToOne(() => Order, (order) => order.orderItems)
+  @ManyToOne(() => Order, (order) => order.orderItems, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'order_id' })
   order: Order;
 
-  // ความสัมพันธ์ระหว่าง OrderItem และ Product
   @ManyToOne(() => Product) 
-  @JoinColumn({ name: 'product_id' }) // เชื่อมโยง product_id
+  @JoinColumn({ name: 'product_id' }) 
   product: Product;
 }

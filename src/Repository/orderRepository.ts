@@ -3,12 +3,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Order } from 'src/Entity/orderEntity';
 import { Product } from 'src/Entity/productEntity';
 import { Repository } from 'typeorm';
+import { OrderItem } from 'src/Entity/orderItemEntity';
 
 @Injectable()
 export class OrderService {
   constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
+
+    @InjectRepository(OrderItem)
+    private readonly orderItemRepository: Repository<Order>,
 
     @InjectRepository(Product) // เพิ่มการ InjectRepository ตรงนี้
     private readonly productRepository: Repository<Product>,
@@ -26,11 +30,19 @@ export class OrderService {
     return this.orderRepository.save(order);
   }
 
-  delete(order_id: number): Promise<Order> {
-    return this.orderRepository.delete(order_id).then(() => {
-      return this.findOne(order_id);
-    });
+  // delete(order_id: number): Promise<Order> {
+  //   return this.orderRepository.delete(order_id).then(() => {
+  //     return this.findOne(order_id);
+  //   });
+  // }
+
+  // OrderService.ts
+
+  async delete(order_id: number): Promise<void> {
+    await this.orderRepository.delete(order_id);
   }
+  
+
 
   deleteAll(): void {
     this.orderRepository.clear();

@@ -7,7 +7,7 @@ export class Order {
   order_id: number;
 
   @Column()
-  user_id: number; // FK from user
+  user_id: number;
 
   @Column()
   oder_date: Date;
@@ -18,7 +18,10 @@ export class Order {
   @Column()
   status: string;
 
-  // ความสัมพันธ์ระหว่าง Order และ OrderItem
-  @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
+  // ตั้งค่า cascade deletion ใน orderItems
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.order, {
+    cascade: true,
+  })
   orderItems: OrderItem[];
 }
+
