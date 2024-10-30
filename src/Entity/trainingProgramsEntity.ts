@@ -19,4 +19,7 @@ export class TrainingProgram {
 
   @Column()
   duration: number;
+
+  @Column()
+  day: string;
 }
