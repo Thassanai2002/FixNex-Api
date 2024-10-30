@@ -17,7 +17,7 @@ export class TrainerRantals {
   trainer: Trainer;
 
   @Column()
-  rental_date: Date;
+  rental_date: string;
 
   @Column()
   duration: number;
