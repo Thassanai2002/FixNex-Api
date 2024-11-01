@@ -32,10 +32,13 @@ export class UserController {
   }
 
   @Get('username/:user_name')
-  async finduser_name(
-    @Param('user_name') user_name: string,
-  ): Promise<any> {
+  async finduser_name(@Param('user_name') user_name: string): Promise<any> {
     return await this.userService.findOneByuser_name(user_name);
+  }
+
+  @Get('userid/:user_id')
+  async findbyuserid(@Param('user_id') user_id: number): Promise<any> {
+    return await this.userService.findOne(+user_id);
   }
 
   @Post()
