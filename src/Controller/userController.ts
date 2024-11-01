@@ -31,6 +31,13 @@ export class UserController {
     return await this.serviceAll.findTrainerUserProgamsEnrollments(+id);
   }
 
+  @Get('username/:user_name')
+  async finduser_name(
+    @Param('user_name') user_name: string,
+  ): Promise<any> {
+    return await this.userService.findOneByuser_name(user_name);
+  }
+
   @Post()
   async create(@Body() user: User): Promise<User> {
     const userExists = await this.userService.checkUserExists(user.user_name);
