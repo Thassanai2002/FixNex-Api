@@ -32,7 +32,7 @@ export class UserSpendingController {
   }
 
   @Patch(':id')
-  update(@Param('id') user_id: string, @Body() user: Partial<UserSpending>): Promise<UserSpending> {
-    return this.userSpendingService.update(+user_id, user);
+  update(@Param('id') user_id: string, @Body() updateData: Partial<UserSpending>): Promise<UserSpending> {
+    return this.userSpendingService.update(+user_id, updateData);
   }
 }
