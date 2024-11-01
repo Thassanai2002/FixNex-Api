@@ -15,8 +15,8 @@ export class UserSpendingService {
     return this.userSpendingRepository.find();
   }
 
-  findOne(spending_id: number): Promise<UserSpending> {
-    return this.userSpendingRepository.findOneBy({ spending_id });
+  findOne(user_id: number): Promise<UserSpending> {
+    return this.userSpendingRepository.findOneBy({ user_id });
   }
 
   create(user: UserSpending): Promise<UserSpending> {
@@ -35,8 +35,8 @@ export class UserSpendingService {
 }
 
 
-  async update(user_id: number, updateData: Partial<UserSpending>): Promise<UserSpending> {
-    await this.userSpendingRepository.update(user_id, updateData); // อัปเดตข้อมูล
-    return this.userSpendingRepository.findOneBy({ user_id }); // คืนค่าข้อมูลผู้ใช้ที่อัปเดต
+  async update(spending_id: number, updateData: Partial<UserSpending>): Promise<UserSpending> {
+    await this.userSpendingRepository.update(spending_id, updateData); // อัปเดตข้อมูล
+    return this.userSpendingRepository.findOneBy({ spending_id }); // คืนค่าข้อมูลผู้ใช้ที่อัปเดต
   }
 }

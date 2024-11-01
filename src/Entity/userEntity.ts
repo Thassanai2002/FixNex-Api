@@ -23,6 +23,4 @@ export class User {
 
   @Column()
   join_date: Date;
-
-
 }
