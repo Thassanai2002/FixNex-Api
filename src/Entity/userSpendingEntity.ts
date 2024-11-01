@@ -9,9 +9,8 @@ export class UserSpending {
   user_id: number; // FK from user
 
   @Column()
-   total_spending: number; 
+  total_spending: number;
 
-   @Column()
-   last_purchas_date: Date;
-
+  @Column()
+  last_purchas_date: Date;
 }
