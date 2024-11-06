@@ -1,32 +1,5 @@
-// import { Module } from '@nestjs/common';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { User } from './Entity/userEntity';
-// import { Product } from './Entity/productEntity';
-
-// @Module({
-//   imports: [
-//     TypeOrmModule.forRoot({
-//       type: 'mysql',
-//       host: '10.0.0.94',  // ใส่ host ของคุณ
-//       port: 3306,         // พอร์ตของ MySQL
-//       username: 'jackky',  // ชื่อผู้ใช้งาน MySQL
-//       password: 'jackky',  // รหัสผ่านของ MySQL
-//       database: 'fitnex',  // ชื่อฐานข้อมูล
-//       entities: [User,Product],  // ระบุตำแหน่งไฟล์ entity
-//       synchronize: true,  // ถ้า true จะสร้างตารางตาม entity อัตโนมัติ (สำหรับ dev)
-//     }),
-//   ],
-  
-//   controllers: [AppController],
-//   providers: [AppService],
-// })
-// export class AppModule {}
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-      // นำเข้า UserService
 import { User } from './Entity/userEntity';
 import { Product } from './Entity/productEntity';
 import { UserService } from './Repository/userRepository';
@@ -48,15 +21,27 @@ import { TrainerRantalsController } from './Controller/trainerRantalsController'
 import { UserSpendingController } from './Controller/userSpendingController';
 import { UserSpendingService } from './Repository/userSpendingRepository';
 import { UserSpending } from './Entity/userSpendingEntity';
+import { programsEnrollments } from './Entity/programsEnrollmentsEntity';
+import { ProgramsEnrollmentsController } from './Controller/programsEnrollmentsController';
+import { ProgramsEnrollmentsService } from './Repository/programsEnrollmentsRepository';
+import { serviceAll } from './Service/Service';
+import { TrainingProgram } from './Entity/trainingProgramsEntity';
+import { TrainingProgramController } from './Controller/trainingProgramsController';
+import { TrainingProgramService } from './Repository/trainingProgramsRepository';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '10.0.0.94',
+      // host: '10.0.0.94',
+      // port: 3306,
+      // username: 'jackky',
+      // password: 'jackky',
+      // database: 'fitnex',
+      host: '127.0.0.1',
       port: 3306,
-      username: 'jackky',
-      password: 'jackky',
+      username: 'root',
+      password: 'root',
       database: 'fitnex',
       entities: [
         User,
@@ -65,7 +50,9 @@ import { UserSpending } from './Entity/userSpendingEntity';
         OrderItem,
         Trainer,
         TrainerRantals,
-        UserSpending
+        UserSpending,
+        programsEnrollments,
+        TrainingProgram
       ],
       synchronize: true,
     }),
@@ -76,7 +63,9 @@ import { UserSpending } from './Entity/userSpendingEntity';
       OrderItem,
       Trainer,
       TrainerRantals,
-      UserSpending
+      UserSpending,
+      programsEnrollments,
+      TrainingProgram
     ]),
   ],
   controllers: [
@@ -86,7 +75,9 @@ import { UserSpending } from './Entity/userSpendingEntity';
     OrderItemController,
     TrainerController,
     TrainerRantalsController,
-    UserSpendingController
+    UserSpendingController,
+    ProgramsEnrollmentsController,
+    TrainingProgramController
   ],
   providers: [
     UserService,
@@ -95,7 +86,10 @@ import { UserSpending } from './Entity/userSpendingEntity';
     OrderItemService,
     TrainerService,
     TrainerRantalsService,
-    UserSpendingService
+    UserSpendingService,
+    ProgramsEnrollmentsService,
+    serviceAll,
+    TrainingProgramService
   ],
 })
 export class AppModule {}
